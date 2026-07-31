@@ -1,5 +1,8 @@
 # SpendSmart - Personal & Team Expense Tracker
 
+![Dashboard](screenshots/dashboard.png)
+![Mobile Dashboard](screenshots/dashboard-mobile.png)
+
 SpendSmart is a full-stack web application designed for tracking personal expenses, setting monthly budgets, and managing shared expenses within groups.
 
 ## Features
@@ -15,7 +18,7 @@ SpendSmart is a full-stack web application designed for tracking personal expens
 
 *   **Frontend:** React (Vite), Tailwind CSS, Redux Toolkit, React Router v6, Axios, Recharts, Lucide React.
 *   **Backend:** Java 17, Spring Boot 3, Spring Security, Spring Data JPA.
-*   **Database:** MySQL.
+*   **Database:** H2 In-Memory (Zero Setup default) / MySQL (Optional).
 *   **Libraries:** iText (PDF Generation), JavaMailSender (Email notifications).
 
 ## Project Structure
@@ -27,22 +30,21 @@ SpendSmart is a full-stack web application designed for tracking personal expens
 ### Prerequisites
 - Java 17
 - Node.js (v18+)
-- MySQL Server
 
 ### 1. Database Setup
-1. Create a MySQL database named `spendsmart`:
-   ```sql
-   CREATE DATABASE spendsmart;
-   ```
-2. The application will automatically create the tables via Hibernate (`spring.jpa.hibernate.ddl-auto=update`).
+The application is pre-configured to use an **H2 in-memory database** for zero setup. No external database installation is required out of the box.
+
+*(Optional)* If you prefer MySQL:
+1. Create a MySQL database named `spendsmart`.
+2. Update `backend/src/main/resources/application.properties` to uncomment the MySQL configuration.
 
 ### 2. Backend Setup
 1. Navigate to the `backend` directory.
-2. Update the `src/main/resources/application.properties` file with your MySQL credentials and Mail server credentials (e.g., Mailtrap for testing).
-3. Build and run the project:
+2. (Optional) Update the `src/main/resources/application.properties` file with your Mail server credentials (e.g., Mailtrap for testing).
+3. Build and run the project using the Maven wrapper:
    ```bash
-   mvn clean install
-   mvn spring-boot:run
+   ./mvnw.cmd clean install -DskipTests
+   ./mvnw.cmd spring-boot:run
    ```
    The backend will run on `http://localhost:8080`.
 
